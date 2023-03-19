@@ -44,14 +44,16 @@ class Point(metaclass=PointCounterMeta):
         self.color: tuple[int, int, int] = color
         self.connected_points: list[Point] = []
         self.offset = 0
-        self.point = Point2D(0, 0)
+        self.point = self.calculate_next_point_pos()
 
     def calculate_next_point_pos(self):
         x = cos(self.offset) * self.radius + self.center.x
         y = sin(self.offset) * self.radius + self.center.y
         self.__get_new_offset()
-        self.point = Point2D(x, y)
+        point = Point2D(x, y)
+        self.point = point
         self.__calculate_connected_points()
+        return point
 
     def create_connected_point(self, speed: int, radius: int, size: int, color: tuple[int, int, int]) -> Point:
         another_point = Point(self.point, speed, radius, size, color)

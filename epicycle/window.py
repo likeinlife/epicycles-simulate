@@ -1,39 +1,37 @@
 import pygame as pg
+
+from . import create_points
 from .config import Colors, Config
-from .calculate import Point, Point2D, PointCounterMeta
+from .calculate import PointCounterMeta
 from . import drawer
 
 pg.init()
+clock = pg.time.Clock()
 
 screen = pg.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
 screen.fill(Colors.BACKGROUND)
-clock = pg.time.Clock()
 
-point1 = Point(Point2D(400, 400), 200, 30, 10, Colors.BLACK)
-point2 = point1.create_connected_point(100, 70, 5, Colors.BLUE)
-point2.create_connected_point(20, 50, 5, Colors.RED)
-
-point3 = Point(Point2D(200, 200), 100, 100, 40, Colors.GREEN)
-point_4 = point3.create_connected_point(300, 150, 20, Colors.BLUE)
-
-point_low_edge = Point(Point2D(Config.SCREEN_WIDTH - 50, Config.SCREEN_HEIGHT - 50), 100, 100, 40, Colors.GREEN)
-point_low_edge.create_connected_point(100, 120, 30, Colors.MAGENTA)
-
-print(PointCounterMeta.points_list)
+background = pg.Surface((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
+tracers = pg.Surface((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT), pg.SRCALPHA)
+foreground = pg.Surface((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT), pg.SRCALPHA)
 
 
 def event_loop():
     while True:
         pg.display.set_caption(str(clock.get_fps()))
-        screen.fill(Colors.BACKGROUND)
+        background.fill(Colors.TRANSPARENT)
+        foreground.fill(Colors.TRANSPARENT)
+        drawer.drawGrid(background)
+
         for point in PointCounterMeta.points_list:
-            if point == point_4:
-                print(point.point.coordinates)
-            drawer.draw_point(point)
+            drawer.draw_point(foreground, point, tracers)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 exit()
 
         clock.tick(Config.FPS)
+        background.blit(tracers, (0, 0))
+        background.blit(foreground, (0, 0))
+        screen.blit(background, (0, 0))
 
         pg.display.update()
