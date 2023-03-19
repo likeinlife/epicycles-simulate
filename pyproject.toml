@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "epicycle"
+version = "0.1.0"
+description = ""
+authors = ["likeinlife <likeinlife48@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pillow = "^9.4.0"
+pygame = "^2.3.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
