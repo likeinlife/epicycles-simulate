@@ -12,14 +12,16 @@ def drawGrid(surface):
 
 def draw_point(surface, point: Point, tracers_surface):
     first_point = point.point.coordinates
-    if validate_coordinates(point.point):
-        pg.draw.circle(surface, Colors.TRANSPARENT, point.point.coordinates, point.size)
+
     point.calculate_next_point_pos()
-    pg.draw.line(surface, Colors.CONNECT_COLOR, point.point.coordinates, point.center.coordinates)
     if validate_coordinates(point.point):
         second_point = point.point.coordinates
-        pg.draw.line(tracers_surface, point.color, first_point, second_point, 2)
-        pg.draw.circle(surface, point.color, point.point.coordinates, point.size)
+        if point.need_to_draw_tracer:  # tracer
+            pg.draw.line(tracers_surface, point.color, first_point, second_point, 2)
+        if point.need_to_draw_connecting_line:  # connecting line
+            pg.draw.line(surface, Colors.CONNECT_COLOR, point.point.coordinates, point.center.coordinates)
+        if point.need_to_draw_point:  # point
+            pg.draw.circle(surface, point.color, point.point.coordinates, point.size)
 
 
 def validate_coordinates(coordinates: Point2D) -> bool:

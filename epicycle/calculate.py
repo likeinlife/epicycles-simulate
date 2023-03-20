@@ -30,7 +30,17 @@ class PointCounterMeta(type):
 
 class Point(metaclass=PointCounterMeta):
 
-    def __init__(self, center: Point2D, speed: int, radius: int, size: int, color: tuple[int, int, int]) -> None:
+    def __init__(
+        self,
+        center: Point2D,
+        speed: int,
+        radius: int,
+        size: int,
+        color: tuple[int, int, int],
+        need_to_draw_point: bool = True,
+        need_to_draw_connecting_line: bool = True,
+        need_to_draw_tracer: bool = True,
+    ) -> None:
         """
         Args:
             center (tuple[int, int]): center coordinates: x, y
@@ -42,6 +52,10 @@ class Point(metaclass=PointCounterMeta):
         self.radius: int = radius
         self.size: int = size
         self.color: tuple[int, int, int] = color
+        self.need_to_draw_point = need_to_draw_point
+        self.need_to_draw_tracer = need_to_draw_tracer
+        self.need_to_draw_connecting_line = need_to_draw_connecting_line
+
         self.connected_points: list[Point] = []
         self.offset = 0
         self.point = self.calculate_next_point_pos()
@@ -55,10 +69,40 @@ class Point(metaclass=PointCounterMeta):
         self.__calculate_connected_points()
         return point
 
-    def create_connected_point(self, speed: int, radius: int, size: int, color: tuple[int, int, int]) -> Point:
-        another_point = Point(self.point, speed, radius, size, color)
+    def create_connected_point(
+        self,
+        speed: int,
+        radius: int,
+        size: int,
+        color: tuple[int, int, int],
+        need_to_draw: bool = True,
+        need_to_draw_connecting_line: bool = True,
+        need_to_draw_tracer: bool = True,
+    ) -> Point:
+        another_point = Point(
+            self.point,
+            speed,
+            radius,
+            size,
+            color,
+            need_to_draw,
+            need_to_draw_connecting_line,
+            need_to_draw_tracer,
+        )
         self.connected_points.append(another_point)
         return another_point
+
+    def disable_point(self):
+        self.need_to_draw_point = False
+        return self
+
+    def disable_tracer(self):
+        self.need_to_draw_tracer = False
+        return self
+
+    def disable_line(self):
+        self.need_to_draw_connecting_line = False
+        return self
 
     def __calculate_connected_points(self):
         for point in self.connected_points:
