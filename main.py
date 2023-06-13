@@ -13,7 +13,6 @@ def pgui():
         point.PointCounterMeta,
         config.Config.SCREEN_HEIGHT,
         config.Config.SCREEN_WIDTH,
-        config.Colors,
     )
 
 
