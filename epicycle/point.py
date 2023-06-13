@@ -1,7 +1,9 @@
 from __future__ import annotations
-from math import pi, sin, cos
+
+from math import cos, pi, sin
 from typing import Any
-from typing_extensions import Self
+
+from .config import Colors
 
 
 class Point2D:
@@ -15,16 +17,16 @@ class Point2D:
         return self.x, self.y
 
     def __repr__(self) -> str:
-        return f'x = {self.x}, y = {self.y}'
+        return f'x = {self.x:.1f}, y = {self.y:.1f}'
 
 
 class PointCounterMeta(type):
 
-    points_list: list[Point] = []
+    points_list: dict[str, Point] = {}
 
     def __call__(cls, *args: Any, **kwds: Any) -> Any:
         instance = super().__call__(*args, **kwds)
-        cls.points_list.append(instance)
+        cls.points_list[str(instance)] = instance
         return instance
 
 
@@ -37,7 +39,7 @@ class Point(metaclass=PointCounterMeta):
         radius: int,
         size: int,
         color: tuple[int, int, int],
-        need_to_draw_point: bool = True,
+        visible: bool = True,
         need_to_draw_connecting_line: bool = True,
         need_to_draw_tracer: bool = True,
     ) -> None:
@@ -52,9 +54,11 @@ class Point(metaclass=PointCounterMeta):
         self.radius: int = radius
         self.size: int = size
         self.color: tuple[int, int, int] = color
-        self.need_to_draw_point = need_to_draw_point
+        self.visible = visible
         self.need_to_draw_tracer = need_to_draw_tracer
         self.need_to_draw_connecting_line = need_to_draw_connecting_line
+
+        self.selected = False
 
         self.connected_points: list[Point] = []
         self.offset = 0
@@ -75,7 +79,7 @@ class Point(metaclass=PointCounterMeta):
         radius: int,
         size: int,
         color: tuple[int, int, int],
-        need_to_draw: bool = True,
+        visible: bool = True,
         need_to_draw_connecting_line: bool = True,
         need_to_draw_tracer: bool = True,
     ) -> Point:
@@ -85,24 +89,24 @@ class Point(metaclass=PointCounterMeta):
             radius,
             size,
             color,
-            need_to_draw,
+            visible,
             need_to_draw_connecting_line,
             need_to_draw_tracer,
         )
         self.connected_points.append(another_point)
         return another_point
 
-    def disable_point(self):
-        self.need_to_draw_point = False
-        return self
+    def get_speed(self) -> float:
+        return 360 * 60 * self.speed / (2 * pi)
 
-    def disable_tracer(self):
-        self.need_to_draw_tracer = False
-        return self
+    def set_speed(self, minutes: int):
+        self.speed = self.__minutes_to_radians(minutes)
 
-    def disable_line(self):
-        self.need_to_draw_connecting_line = False
-        return self
+    def enable_selection(self):
+        self.selected = True
+
+    def disable_selection(self):
+        self.selected = False
 
     def __calculate_connected_points(self):
         for point in self.connected_points:
@@ -113,6 +117,12 @@ class Point(metaclass=PointCounterMeta):
         if self.offset >= 2 * pi:
             self.offset -= 2 * pi
 
+    def get_color(self) -> str:
+        return Colors.find_color_by_value(self.color)
+
     @staticmethod
     def __minutes_to_radians(minutes: int) -> float:
         return 2 * pi * minutes / (360 * 60)
+
+    def __repr__(self) -> str:
+        return f'{Colors.find_color_by_value(self.color)} - {self.center} > {self.speed:.1f}'

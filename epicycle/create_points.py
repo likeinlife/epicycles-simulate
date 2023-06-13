@@ -1,5 +1,5 @@
 from .config import Colors, Config
-from .calculate import Point, Point2D
+from .point import Point, Point2D
 
 point1 = Point(Point2D(300, 400), 200, 30, 10, Colors.BLACK)
 point2 = point1.create_connected_point(100, 70, 5, Colors.BLUE)
@@ -13,4 +13,4 @@ point2.create_connected_point(-20, 50, 5, Colors.RED)
 
 middle_point = Point(Point2D(Config.SCREEN_WIDTH // 2, Config.SCREEN_HEIGHT // 2), 140, 30, 30, Colors.RED)
 mid_p_2 = middle_point.create_connected_point(-200, 80, 20, Colors.CYAN, False, False, False)
-mid_p_2.create_connected_point(-160, 120, 5, Colors.BLACK).disable_point().disable_line()
+mid_p_2.create_connected_point(-160, 120, 5, Colors.BLACK)

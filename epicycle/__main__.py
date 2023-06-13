@@ -1,7 +1,5 @@
-from .window import event_loop
-
-
 def main():
+    from .window import event_loop
     event_loop()
 
 

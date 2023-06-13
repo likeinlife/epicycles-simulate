@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 pillow = "^9.4.0"
 pygame = "^2.3.0"
+dearpygui = "^1.9.1"
 
 
 [tool.poetry.group.dev.dependencies]
