@@ -79,7 +79,7 @@ def del_object():
     pass
 
 
-def create_child(figure):
+def create_child(figure: point.Point):
 
     visible = dpg.get_value('create_child_visible')
     line = dpg.get_value('create_child_line')
@@ -101,4 +101,18 @@ def create_child(figure):
         tracer,
     )
     dpg.set_value('child', p)
+    dpg.hide_item('create_child_modal')
     menu_actions.update_point_menu()
+
+
+def update_child(figure: point.Point):
+
+    figure.visible = dpg.get_value('update_child_visible')
+    figure.need_to_draw_connecting_line = dpg.get_value('update_child_line')
+    figure.need_to_draw_tracer = dpg.get_value('update_child_tracer')
+    figure.radius = dpg.get_value('update_child_radius')
+    color = dpg.get_value('update_child_color')
+    figure.size = dpg.get_value('update_child_size')
+    figure.color = config.Colors.get_color(color)
+
+    figure.set_speed(dpg.get_value('update_child_speed'))

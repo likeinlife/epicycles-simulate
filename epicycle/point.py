@@ -125,4 +125,4 @@ class Point(metaclass=PointCounterMeta):
         return 2 * pi * minutes / (360 * 60)
 
     def __repr__(self) -> str:
-        return f'{Colors.find_color_by_value(self.color)} - {self.center} > {self.get_speed()}'
+        return f'{Colors.find_color_by_value(self.color)}  > {self.get_speed()}'

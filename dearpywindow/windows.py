@@ -71,7 +71,10 @@ def create_modal_list_points(width: int, height: int):
             [],
             label='children',
             tag='child',
+            callback=lambda: menu_actions.update_modal_update_child(),
         )
+        dpg.add_button(label='Add child', callback=show_create_child_modal)
+        dpg.add_button(label='Update child', callback=show_update_child_modal)
 
         dpg.add_checkbox(label="Visible", tag='visible', enabled=False)
         dpg.add_checkbox(label="Line", tag='line', enabled=False)
@@ -87,9 +90,6 @@ def create_modal_list_points(width: int, height: int):
         dpg.add_slider_int(label="speed", min_value=-1000, max_value=1000, tag='speed', enabled=False)
         dpg.add_slider_int(label="radius", min_value=1, max_value=1000, tag='radius', enabled=False)
         dpg.add_slider_int(label="size", min_value=2, max_value=300, tag='size', enabled=False)
-
-        dpg.add_button(label='Update child', callback=show_update_child_modal)
-        dpg.add_button(label='Add child', callback=show_create_child_modal)
 
     dpg.hide_item('list_points_modal')
 
@@ -178,6 +178,7 @@ def create_modal_update_child(width: int, height: int):
         dpg.add_slider_int(label="radius", min_value=1, max_value=1000, tag='update_child_radius')
         dpg.add_slider_int(label="size", min_value=1, max_value=300, tag='update_child_size', default_value=1)
 
-        dpg.add_button(label='Create', callback=lambda: object_actions.create_point())
+        dpg.add_button(label='Update child',
+                       callback=lambda: object_actions.update_child(object_actions.get_child_point()))
 
     dpg.hide_item('update_child_modal')

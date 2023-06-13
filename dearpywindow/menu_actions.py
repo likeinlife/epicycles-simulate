@@ -60,14 +60,9 @@ def update_modal_update_child():
     dpg.set_value('update_child_line', figure.need_to_draw_connecting_line)
     dpg.set_value('update_child_color', figure.get_color())
 
-    dpg.set_value('update_child_x', int(figure.center.x))
-    dpg.set_value('update_child_y', int(figure.center.y))
     dpg.set_value('update_child_speed', figure.get_speed())
     dpg.set_value('update_child_radius', figure.radius)
     dpg.set_value('update_child_size', figure.size)
-
-    #update child listbox
-    dpg.configure_item('child', items=figure.connected_points)
 
 
 def update_figures_combobox():
