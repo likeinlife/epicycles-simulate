@@ -109,7 +109,10 @@ def create_modal_list_points(width: int, height: int):
         dpg.add_button(label='Update child', callback=show_update_child_modal)
         dpg.add_button(
             label='Delete child',
-            callback=lambda: object_actions.delete_point_callback(object_actions.get_child_point()),
+            callback=lambda: object_actions.delete_child_callback(
+                object_actions.get_point(),
+                object_actions.get_child_point(),
+            ),
         )
 
         dpg.add_checkbox(label="Visible", tag='visible', enabled=False)

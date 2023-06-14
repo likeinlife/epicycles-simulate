@@ -82,11 +82,25 @@ def del_objects():
 
 
 def delete_point_callback(p: point.Point):
+
+    dpg.configure_item('child', items=[])
+    dpg.set_value('figure', '')
+    delete_point(p)
+
+
+def delete_child_callback(p: point.Point, child: point.Point):
+    dpg.configure_item('child', items=[])
+    dpg.set_value('figure', '')
+
+    p.connected_points.remove(child)
+    delete_point(child)
+
+
+def delete_point(p: point.Point):
     if p.connected_points:
         for child in p.connected_points:
-            delete_point_callback(child)
+            delete_point(child)
     del point.PointCounterMeta.points_list[str(p)]
-
     del p
 
 

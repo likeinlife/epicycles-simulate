@@ -70,6 +70,8 @@ def update_modal_update_child():
 
 def update_figures_combobox():
     dpg.configure_item('figure', items=list(point.PointCounterMeta.points_list.keys()))
+    if dpg.get_value('figure'):
+        update_point_menu()
 
 
 def set_values():
