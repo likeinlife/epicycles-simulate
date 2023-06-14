@@ -42,6 +42,7 @@ class Point(metaclass=PointCounterMeta):
         visible: bool = True,
         need_to_draw_connecting_line: bool = True,
         need_to_draw_tracer: bool = True,
+        is_parent: bool = True,
     ) -> None:
         """
         Args:
@@ -57,6 +58,7 @@ class Point(metaclass=PointCounterMeta):
         self.visible = visible
         self.need_to_draw_tracer = need_to_draw_tracer
         self.need_to_draw_connecting_line = need_to_draw_connecting_line
+        self.is_parent = is_parent
 
         self.selected = False
 
@@ -92,6 +94,7 @@ class Point(metaclass=PointCounterMeta):
             visible,
             need_to_draw_connecting_line,
             need_to_draw_tracer,
+            is_parent=False,
         )
         self.connected_points.append(another_point)
         return another_point

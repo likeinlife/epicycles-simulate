@@ -10,7 +10,7 @@ def main_window(
     WINDOW_HEIGHT: int,
     WINDOW_WIDTH: int,
 ):
-    with dpg.window(label="Epicycles", width=WINDOW_HEIGHT, height=WINDOW_WIDTH, no_resize=True, tag='main_window'):
+    with dpg.window(label="Epicycles", tag='main_window'):
         dpg.add_button(
             label='Points',
             callback=show_list_point_modal,
@@ -21,9 +21,37 @@ def main_window(
         )
 
         with dpg.group(horizontal=True):
-            dpg.add_button(label='Clear objects', callback=object_actions.del_object)
+            dpg.add_button(label='Clear objects', callback=object_actions.del_objects)
             dpg.add_button(label='||', callback=object_actions.pause)
             dpg.add_button(label='Clear tracers', callback=object_actions.clear_tracers)
+
+        with dpg.file_dialog(
+                label='Load Json config',
+                show=False,
+                directory_selector=False,
+                callback=menu_actions.load_json_callback,
+                cancel_callback=menu_actions.load_json_cancel_callback,
+                tag='load_file',
+                width=700,
+                height=400,
+        ):
+            dpg.add_file_extension('.json', color=(70, 200, 70, 255))
+
+        dpg.add_button(label='Load json config', callback=lambda: dpg.show_item('load_file'))
+
+        with dpg.file_dialog(
+                label='Dump config to json',
+                show=False,
+                directory_selector=False,
+                callback=menu_actions.dump_json_callback,
+                cancel_callback=menu_actions.dump_json_cancel_callback,
+                tag='dump_file',
+                width=700,
+                height=400,
+        ):
+            dpg.add_file_extension('.json', color=(70, 200, 70, 255))
+
+        dpg.add_button(label='Dump config to json', callback=lambda: dpg.show_item('dump_file'))
 
 
 def show_create_point_modal():
@@ -66,6 +94,10 @@ def create_modal_list_points(width: int, height: int):
                 callback=lambda: menu_actions.update_point_menu(),
             )
         dpg.add_button(label='Update point', callback=show_update_point_modal)
+        dpg.add_button(
+            label='Delete parent point',
+            callback=lambda: object_actions.delete_point_callback(object_actions.get_point()),
+        )
 
         dpg.add_listbox(
             [],
@@ -75,6 +107,10 @@ def create_modal_list_points(width: int, height: int):
         )
         dpg.add_button(label='Add child', callback=show_create_child_modal)
         dpg.add_button(label='Update child', callback=show_update_child_modal)
+        dpg.add_button(
+            label='Delete child',
+            callback=lambda: object_actions.delete_point_callback(object_actions.get_child_point()),
+        )
 
         dpg.add_checkbox(label="Visible", tag='visible', enabled=False)
         dpg.add_checkbox(label="Line", tag='line', enabled=False)

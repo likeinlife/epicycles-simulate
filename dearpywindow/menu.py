@@ -10,21 +10,25 @@ from .windows import (create_modal_create_child, create_modal_create_point, crea
 
 def main(
     figures: type[point.PointCounterMeta],
-    WINDOW_HEIGHT: int,
-    WINDOW_WIDTH: int,
+    /,
+    PYGAME_WINDOW_HEIGHT: int = 900,
+    PYGAME_WINDOW_WIDTH: int = 1600,
+    PGUI_HEIGHT: int = 400,
+    PGUI_WIDTH: int = 700,
 ):
     dpg.create_context()
-    dpg.create_viewport(width=500, height=600, resizable=False)
+    dpg.create_viewport(width=PGUI_WIDTH, height=PGUI_HEIGHT, resizable=False)
     dpg.setup_dearpygui()
 
     set_values()
-    main_window(figures, WINDOW_HEIGHT, WINDOW_WIDTH)
-    create_modal_list_points(WINDOW_WIDTH, WINDOW_HEIGHT)
-    create_modal_create_point(WINDOW_WIDTH, WINDOW_HEIGHT)
-    create_modal_update_point(WINDOW_WIDTH, WINDOW_HEIGHT)
+    main_window(figures, PYGAME_WINDOW_HEIGHT, PYGAME_WINDOW_WIDTH)
+    dpg.set_primary_window('main_window', True)
+    create_modal_list_points(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
+    create_modal_create_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
+    create_modal_update_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
 
-    create_modal_update_child(WINDOW_WIDTH, WINDOW_HEIGHT)
-    create_modal_create_child(WINDOW_WIDTH, WINDOW_HEIGHT)
+    create_modal_update_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
+    create_modal_create_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
 
     error_popup('')
 

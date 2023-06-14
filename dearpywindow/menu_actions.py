@@ -1,3 +1,6 @@
+from pathlib import Path
+from venv import create
+
 import dearpygui.dearpygui as dpg
 
 from epicycle import point
@@ -76,3 +79,34 @@ def set_values():
 
 def clear_selection(figures: type[point.PointCounterMeta]):
     [figure.disable_selection() for figure in figures.points_list.values()]
+
+
+def dump_json_callback(sender, app_data):
+    from epicycle import create_points
+
+    print('Dumping files')
+    abs_path = app_data.get('file_path_name')
+    if abs_path is not None:
+        abs_path = Path(abs_path)
+        create_points.DumpPointToJson(point.PointCounterMeta.points_list.values(), abs_path)
+        print('Successfully dumped')
+
+
+def dump_json_cancel_callback(sender, app_data):
+    ...
+
+
+def load_json_callback(sender, app_data):
+    from epicycle import create_points
+
+    print('Loading files')
+    abs_path = app_data.get('file_path_name')
+    if abs_path is not None:
+        abs_path = Path(abs_path)
+        object_actions.del_objects()
+        create_points.LoadPointsFromJSON(abs_path)
+        print('Successfully loaded')
+
+
+def load_json_cancel_callback(sender, app_data):
+    ...

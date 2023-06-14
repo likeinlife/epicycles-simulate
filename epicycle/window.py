@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pygame as pg
 
 from . import create_points, drawer
@@ -5,6 +7,8 @@ from .config import Colors, Config
 from .point import PointCounterMeta
 
 pg.init()
+
+# create_points.LoadPointsFromJSON(Path(r'C:\Users\USER1\Python_projects\epicycle\points.json'))
 clock = pg.time.Clock()
 
 screen = pg.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))

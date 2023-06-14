@@ -1,0 +1,48 @@
+[
+    {
+        "size": 10,
+        "color": "BLUE",
+        "x": 500,
+        "y": 500,
+        "radius": 70,
+        "speed": 100,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 10,
+                "color": "RED",
+                "radius": 10,
+                "speed": -100,
+                "visible": true,
+                "line": true,
+                "tracer": true,
+                "children": null
+            }
+        ]
+    },
+    {
+        "size": 20,
+        "color": "GREEN",
+        "x": 300,
+        "y": 600,
+        "radius": 40,
+        "speed": 200,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 10,
+                "color": "CYAN",
+                "radius": 70,
+                "speed": -200,
+                "visible": true,
+                "line": true,
+                "tracer": true,
+                "children": null
+            }
+        ]
+    }
+]

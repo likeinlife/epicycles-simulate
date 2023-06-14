@@ -1,0 +1,33 @@
+[
+    {
+        "size": 17,
+        "color": "RED",
+        "x": 678,
+        "y": 387,
+        "radius": 211,
+        "speed": 284.0,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 4,
+                "color": "BLUE",
+                "radius": 106,
+                "speed": -263.0,
+                "visible": true,
+                "line": true,
+                "tracer": true
+            },
+            {
+                "size": 17,
+                "color": "BLACK",
+                "radius": 22,
+                "speed": 263.0,
+                "visible": true,
+                "line": true,
+                "tracer": true
+            }
+        ]
+    }
+]

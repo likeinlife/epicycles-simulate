@@ -11,8 +11,10 @@ def pg():
 def pgui():
     dearpywindow.menu.main(
         point.PointCounterMeta,
-        config.Config.SCREEN_HEIGHT,
-        config.Config.SCREEN_WIDTH,
+        PYGAME_WINDOW_HEIGHT=config.Config.SCREEN_HEIGHT,
+        PYGAME_WINDOW_WIDTH=config.Config.SCREEN_WIDTH,
+        PGUI_HEIGHT=600,
+        PGUI_WIDTH=800,
     )
 
 

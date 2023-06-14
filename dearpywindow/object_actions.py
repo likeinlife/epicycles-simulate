@@ -75,8 +75,19 @@ def clear_tracers():
     window.clear_tracers()
 
 
-def del_object():
-    pass
+def del_objects():
+    for p in point.PointCounterMeta.points_list.values():
+        del p
+    point.PointCounterMeta.points_list = {}
+
+
+def delete_point_callback(p: point.Point):
+    if p.connected_points:
+        for child in p.connected_points:
+            delete_point_callback(child)
+    del point.PointCounterMeta.points_list[str(p)]
+
+    del p
 
 
 def create_child(figure: point.Point):

@@ -1,0 +1,68 @@
+[
+    {
+        "size": 10,
+        "color": "BLUE",
+        "x": 500,
+        "y": 500,
+        "radius": 70,
+        "speed": 100.0,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 10,
+                "color": "RED",
+                "radius": 10,
+                "speed": -100.0,
+                "visible": true,
+                "line": true,
+                "tracer": true
+            }
+        ]
+    },
+    {
+        "size": 20,
+        "color": "GREEN",
+        "x": 300,
+        "y": 600,
+        "radius": 40,
+        "speed": 200.0,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 10,
+                "color": "CYAN",
+                "radius": 70,
+                "speed": -200.0,
+                "visible": true,
+                "line": true,
+                "tracer": true
+            }
+        ]
+    },
+    {
+        "size": 23,
+        "color": "BLACK",
+        "x": 958,
+        "y": 101,
+        "radius": 54,
+        "speed": 347.0,
+        "visible": true,
+        "line": true,
+        "tracer": true,
+        "children": [
+            {
+                "size": 20,
+                "color": "GREEN",
+                "radius": 33,
+                "speed": -431.9999999999999,
+                "visible": true,
+                "line": true,
+                "tracer": true
+            }
+        ]
+    }
+]
