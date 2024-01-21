@@ -18,7 +18,7 @@ def pgui():
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pg_thread = threading.Thread(target=pg)
     pgui_thread = threading.Thread(target=pgui)
 

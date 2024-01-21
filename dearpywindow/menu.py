@@ -1,11 +1,17 @@
 import dearpygui.dearpygui as dpg
 
-from epicycle import config, point
+from epicycle import point
 
 from .error import error_popup
 from .menu_actions import set_values
-from .windows import (create_modal_create_child, create_modal_create_point, create_modal_list_points,
-                      create_modal_update_child, create_modal_update_point, main_window)
+from .windows import (
+    create_modal_create_child,
+    create_modal_create_point,
+    create_modal_list_points,
+    create_modal_update_child,
+    create_modal_update_point,
+    main_window,
+)
 
 
 def main(
@@ -22,7 +28,7 @@ def main(
 
     set_values()
     main_window(figures, PYGAME_WINDOW_HEIGHT, PYGAME_WINDOW_WIDTH)
-    dpg.set_primary_window('main_window', True)
+    dpg.set_primary_window("main_window", True)
     create_modal_list_points(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
     create_modal_create_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
     create_modal_update_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
@@ -30,7 +36,7 @@ def main(
     create_modal_update_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
     create_modal_create_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
 
-    error_popup('')
+    error_popup("")
 
     dpg.set_viewport_always_top(True)
 

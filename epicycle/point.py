@@ -7,7 +7,6 @@ from .config import Colors
 
 
 class Point2D:
-
     def __init__(self, x: float, y: float) -> None:
         self.x = x
         self.y = y
@@ -17,11 +16,10 @@ class Point2D:
         return self.x, self.y
 
     def __repr__(self) -> str:
-        return f'x = {self.x:.1f}, y = {self.y:.1f}'
+        return f"x = {self.x:.1f}, y = {self.y:.1f}"
 
 
 class PointCounterMeta(type):
-
     points_list: dict[str, Point] = {}
 
     def __call__(cls, *args: Any, **kwds: Any) -> Any:
@@ -31,7 +29,6 @@ class PointCounterMeta(type):
 
 
 class Point(metaclass=PointCounterMeta):
-
     def __init__(
         self,
         center: Point2D,
@@ -128,4 +125,4 @@ class Point(metaclass=PointCounterMeta):
         return 2 * pi * minutes / (360 * 60)
 
     def __repr__(self) -> str:
-        return f'{Colors.find_color_by_value(self.color)}  > {self.get_speed()}'
+        return f"{Colors.find_color_by_value(self.color)}  > {self.get_speed()}"

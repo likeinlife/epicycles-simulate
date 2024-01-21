@@ -7,33 +7,33 @@ from . import error
 
 
 def get_point() -> point.Point:
-    if (sel_point := dpg.get_value('figure')):
+    if sel_point := dpg.get_value("figure"):
         return point.PointCounterMeta.points_list[sel_point]
     else:
-        error.show_error('No figure selected')
-        raise IndexError('No figure selected')
+        error.show_error("No figure selected")
+        raise IndexError("No figure selected")
 
 
 def get_child_point() -> point.Point:
-    if (sel_point := dpg.get_value('child')):
+    if sel_point := dpg.get_value("child"):
         return point.PointCounterMeta.points_list[sel_point]
     else:
-        error.show_error('No child selected')
-        raise IndexError('No child selected')
+        error.show_error("No child selected")
+        raise IndexError("No child selected")
 
 
 def create_point():
-    visible = dpg.get_value('create_visible')
-    line = dpg.get_value('create_line')
-    tracer = dpg.get_value('create_tracer')
-    radius = dpg.get_value('create_radius')
-    color = dpg.get_value('create_color')
-    size = dpg.get_value('create_size')
+    visible = dpg.get_value("create_visible")
+    line = dpg.get_value("create_line")
+    tracer = dpg.get_value("create_tracer")
+    radius = dpg.get_value("create_radius")
+    color = dpg.get_value("create_color")
+    size = dpg.get_value("create_size")
     color_rgb = config.Colors.get_color(color)
 
-    x = dpg.get_value('create_x')
-    y = dpg.get_value('create_y')
-    speed = dpg.get_value('create_speed')
+    x = dpg.get_value("create_x")
+    y = dpg.get_value("create_y")
+    speed = dpg.get_value("create_speed")
 
     p = point.Point(
         point.Point2D(x, y),
@@ -45,33 +45,34 @@ def create_point():
         line,
         tracer,
     )
-    dpg.set_value('figure', p)
+    dpg.set_value("figure", p)
     menu_actions.update_point_menu()
-    dpg.hide_item('create_point_modal')
+    dpg.hide_item("create_point_modal")
 
 
 def update_point(figure: point.Point):
-
-    figure.visible = dpg.get_value('update_visible')
-    figure.need_to_draw_connecting_line = dpg.get_value('update_line')
-    figure.need_to_draw_tracer = dpg.get_value('update_tracer')
-    figure.radius = dpg.get_value('update_radius')
-    color = dpg.get_value('update_color')
-    figure.size = dpg.get_value('update_size')
+    figure.visible = dpg.get_value("update_visible")
+    figure.need_to_draw_connecting_line = dpg.get_value("update_line")
+    figure.need_to_draw_tracer = dpg.get_value("update_tracer")
+    figure.radius = dpg.get_value("update_radius")
+    color = dpg.get_value("update_color")
+    figure.size = dpg.get_value("update_size")
 
     figure.color = config.Colors.get_color(color)
 
-    figure.center = point.Point2D(dpg.get_value('update_x'), dpg.get_value('update_y'))
-    figure.set_speed(dpg.get_value('update_speed'))
+    figure.center = point.Point2D(dpg.get_value("update_x"), dpg.get_value("update_y"))
+    figure.set_speed(dpg.get_value("update_speed"))
 
 
 def pause():
     from epicycle import window
+
     window.pause = not window.pause
 
 
 def clear_tracers():
     from epicycle import window
+
     window.clear_tracers()
 
 
@@ -82,15 +83,14 @@ def del_objects():
 
 
 def delete_point_callback(p: point.Point):
-
-    dpg.configure_item('child', items=[])
-    dpg.set_value('figure', '')
+    dpg.configure_item("child", items=[])
+    dpg.set_value("figure", "")
     delete_point(p)
 
 
 def delete_child_callback(p: point.Point, child: point.Point):
-    dpg.configure_item('child', items=[])
-    dpg.set_value('figure', '')
+    dpg.configure_item("child", items=[])
+    dpg.set_value("figure", "")
 
     p.connected_points.remove(child)
     delete_point(child)
@@ -105,16 +105,15 @@ def delete_point(p: point.Point):
 
 
 def create_child(figure: point.Point):
-
-    visible = dpg.get_value('create_child_visible')
-    line = dpg.get_value('create_child_line')
-    tracer = dpg.get_value('create_child_tracer')
-    radius = dpg.get_value('create_child_radius')
-    color = dpg.get_value('create_child_color')
-    size = dpg.get_value('create_child_size')
+    visible = dpg.get_value("create_child_visible")
+    line = dpg.get_value("create_child_line")
+    tracer = dpg.get_value("create_child_tracer")
+    radius = dpg.get_value("create_child_radius")
+    color = dpg.get_value("create_child_color")
+    size = dpg.get_value("create_child_size")
     color_rgb = config.Colors.get_color(color)
 
-    speed = dpg.get_value('create_child_speed')
+    speed = dpg.get_value("create_child_speed")
 
     p = figure.create_connected_point(
         speed,
@@ -125,19 +124,18 @@ def create_child(figure: point.Point):
         line,
         tracer,
     )
-    dpg.set_value('child', p)
-    dpg.hide_item('create_child_modal')
+    dpg.set_value("child", p)
+    dpg.hide_item("create_child_modal")
     menu_actions.update_point_menu()
 
 
 def update_child(figure: point.Point):
-
-    figure.visible = dpg.get_value('update_child_visible')
-    figure.need_to_draw_connecting_line = dpg.get_value('update_child_line')
-    figure.need_to_draw_tracer = dpg.get_value('update_child_tracer')
-    figure.radius = dpg.get_value('update_child_radius')
-    color = dpg.get_value('update_child_color')
-    figure.size = dpg.get_value('update_child_size')
+    figure.visible = dpg.get_value("update_child_visible")
+    figure.need_to_draw_connecting_line = dpg.get_value("update_child_line")
+    figure.need_to_draw_tracer = dpg.get_value("update_child_tracer")
+    figure.radius = dpg.get_value("update_child_radius")
+    color = dpg.get_value("update_child_color")
+    figure.size = dpg.get_value("update_child_size")
     figure.color = config.Colors.get_color(color)
 
-    figure.set_speed(dpg.get_value('update_child_speed'))
+    figure.set_speed(dpg.get_value("update_child_speed"))

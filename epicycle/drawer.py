@@ -21,12 +21,22 @@ def draw_point(surface, point: Point, tracers_surface):
         if point.need_to_draw_tracer:  # tracer
             pg.draw.line(tracers_surface, point.color, first_point, second_point, 2)
         if point.need_to_draw_connecting_line:  # connecting line
-            pg.draw.line(surface, Colors._CONNECT_COLOR, point.point.coordinates, point.center.coordinates)
+            pg.draw.line(
+                surface,
+                Colors._CONNECT_COLOR,
+                point.point.coordinates,
+                point.center.coordinates,
+            )
         if point.visible:  # point
             pg.draw.circle(surface, point.color, point.point.coordinates, point.size)
         if point.selected:
             if pg.time.get_ticks() % 500 < 300:
-                pg.draw.circle(surface, Colors._SELECT_COLOR, point.point.coordinates, point.size + 50 / point.size)
+                pg.draw.circle(
+                    surface,
+                    Colors._SELECT_COLOR,
+                    point.point.coordinates,
+                    point.size + 50 / point.size,
+                )
 
 
 def validate_coordinates(coordinates: Point2D) -> bool:

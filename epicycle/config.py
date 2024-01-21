@@ -25,7 +25,11 @@ class Colors:
 
     @classmethod
     def get_colors(cls) -> list[str]:
-        return [color for color in cls.__dict__ if color.isupper() and not color.startswith('_')]
+        return [
+            color
+            for color in cls.__dict__
+            if color.isupper() and not color.startswith("_")
+        ]
 
     @classmethod
     def find_color_by_value(cls, color_value: tuple) -> str:
@@ -34,7 +38,7 @@ class Colors:
         for color in colors:
             if getattr(cls, color) == color_value:
                 return color
-        raise IndexError('Incorrect color')
+        raise IndexError("Incorrect color")
 
     @classmethod
     def get_color(cls, color: str) -> tuple[int, int, int]:
