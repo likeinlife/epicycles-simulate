@@ -27,7 +27,7 @@ def main(
     dpg.setup_dearpygui()
 
     set_values()
-    main_window(figures, PYGAME_WINDOW_HEIGHT, PYGAME_WINDOW_WIDTH)
+    main_window(figures)
     dpg.set_primary_window("main_window", True)
     create_modal_list_points(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
     create_modal_create_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
