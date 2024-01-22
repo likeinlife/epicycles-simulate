@@ -1,6 +1,20 @@
-# Симуляция эпициклов
+# Описание
 
-Для создания точки - calculate.Point
-Для коннекта с существующие точкой: Point.create_connected_point
+Эмуляция эпициклов на PyGame + DearPyGUI 
 
-Место, где создаются точки - create_points.py
+# Использование
+
+1. Установка зависимостей
+```cmd
+poetry install
+```
+
+2. Запуск
+```cmd
+python main.py
+```
+
+# Скриншоты
+
+![](./static/screenshot.png)
+
