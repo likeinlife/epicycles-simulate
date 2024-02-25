@@ -1,6 +1,6 @@
 # Описание
 
-Эмуляция эпициклов на PyGame + DearPyGUI 
+Эмуляция эпициклов на PyGame + DearPyGUI
 
 # Использование
 
@@ -17,4 +17,6 @@ python src/main.py
 # Скриншоты
 
 ![](./static/screenshot.png)
+![](./static/screenshot2.png)
+![](./static/screenshot3.png)
 
