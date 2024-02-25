@@ -9,12 +9,10 @@ class SelectWrapperCommand(ICommand):
         self.mouse_position = mouse_position
 
     def execute(self) -> None:
-        print("selecting...")
-
         def _in(left: float, cur: float, right: float) -> bool:
             return left <= cur <= right
 
-        for wrapper in self.state.wrapper_list:
+        for _, wrapper in self.state.wrappers.items():
             if _in(
                 wrapper.position.x - wrapper.epicycle.size,
                 self.mouse_position[0],
@@ -25,7 +23,6 @@ class SelectWrapperCommand(ICommand):
                 wrapper.position.y + wrapper.epicycle.size,
             ):
                 self.state.selected_wrapper = wrapper.__hash__()
-                print(f"selected {self.state.selected_wrapper}")
                 break
         else:
             self.state.selected_wrapper = None

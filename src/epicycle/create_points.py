@@ -10,7 +10,7 @@ def create_points() -> State:
     point2 = point1.create_child(100, 100, 5, Color.blue)
     point2.create_child(-20, 50, 5, Color.red)
 
-    return State(wrappers=list(EpicycleWrapper.wrapper_set))
+    return State(wrapper_list=list(EpicycleWrapper.wrapper_set))
 
     # middle_point = EpicycleWrapper.new(Point2D(x=500, y=500), 140, 30, 30, Color.red)
     # mid_p_2 = middle_point.create_child(-200, 80, 20, Color.cyan, False, False, False)

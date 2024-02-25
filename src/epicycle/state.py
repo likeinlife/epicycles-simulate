@@ -7,8 +7,8 @@ class State:
     def __init__(
         self,
         pause: bool = False,
-        wrappers: list[EpicycleWrapper] | None = None,
+        wrapper_list: list[EpicycleWrapper] | None = None,
     ) -> None:
         self.pause = pause
-        self.wrapper_list = wrappers or []
+        self.wrappers: dict[int, EpicycleWrapper] = {wrapper.__hash__(): wrapper for wrapper in wrapper_list or []}
         self.selected_wrapper = None

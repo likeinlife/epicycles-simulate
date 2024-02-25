@@ -24,6 +24,7 @@ class EpicycleWrapper:
         self.epicycle = epicycle
         self.position = Point2D(x=epicycle.center.x, y=epicycle.center.y + epicycle.radius)
         self.offset = 0
+        self.children = []
         self.calculate_next_position()
 
     @classmethod
@@ -92,6 +93,7 @@ class EpicycleWrapper:
             has_tracer=has_tracer,
         )
         self.epicycle.children.append(child_wrapper.epicycle)
+        self.children.append(child_wrapper)
         return child_wrapper
 
     def update(

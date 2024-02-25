@@ -52,7 +52,7 @@ class PyGameWindow:
         self.foreground_surface = pg.Surface((self.width, self.height), pg.SRCALPHA)
 
     def _update_epicycles(self) -> None:
-        for wrapper in self.state.wrapper_list:
+        for _, wrapper in self.state.wrappers.items():
             previous_pos = wrapper.position.to_tuple()
             wrapper.calculate_next_position()
             current_pos = wrapper.position.to_tuple()
