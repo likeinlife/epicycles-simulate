@@ -1,0 +1,85 @@
+[
+    {
+        "is_parent": true,
+        "center": {
+            "x": 300.0,
+            "y": 400.0
+        },
+        "speed": 0.14544410433286079,
+        "radius": 30,
+        "size": 10,
+        "color": [
+            255,
+            0,
+            228,
+            255
+        ],
+        "visible": true,
+        "has_tracer": true,
+        "has_connect_line": true,
+        "children": [
+            {
+                "is_parent": false,
+                "center": {
+                    "x": 282.0852422489098,
+                    "y": 424.0636957826464
+                },
+                "speed": 0.02908882086657216,
+                "radius": 100,
+                "size": 5,
+                "color": [
+                    0,
+                    0,
+                    255,
+                    255
+                ],
+                "visible": true,
+                "has_tracer": true,
+                "has_connect_line": true,
+                "children": [
+                    {
+                        "is_parent": false,
+                        "center": {
+                            "x": 383.06647596555774,
+                            "y": 449.46762880959363
+                        },
+                        "speed": -0.005817764173314432,
+                        "radius": 50,
+                        "size": 5,
+                        "color": [
+                            255,
+                            0,
+                            0,
+                            255
+                        ],
+                        "visible": true,
+                        "has_tracer": true,
+                        "has_connect_line": true,
+                        "children": [
+                            {
+                                "is_parent": false,
+                                "center": {
+                                    "x": 405.3199861126244,
+                                    "y": 495.1950116486506
+                                },
+                                "speed": -0.13991722836821208,
+                                "radius": 68,
+                                "size": 7,
+                                "color": [
+                                    21,
+                                    0,
+                                    255,
+                                    255
+                                ],
+                                "visible": true,
+                                "has_tracer": true,
+                                "has_connect_line": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
