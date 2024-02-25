@@ -10,6 +10,6 @@ class JsonConfigDumper:
         self.json_path = json_path
 
     def dump(self):
-        content = [epicycle.model_dump(mode="json") for epicycle in self.epicycle_list]
+        content = [epicycle.model_dump(mode="json") for epicycle in self.epicycle_list if epicycle.is_parent]
         with open(self.json_path, "w") as file_obj:
             json.dump(content, file_obj, indent=4, ensure_ascii=False)

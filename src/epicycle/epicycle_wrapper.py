@@ -39,6 +39,8 @@ class EpicycleWrapper:
         visible: bool = True,
         has_connect_line: bool = True,
         has_tracer: bool = True,
+        *,
+        is_parent: bool = True,
     ) -> EpicycleWrapper:
         """
         Create new epicycle, then wrap it with EpicycleWrapper.
@@ -46,6 +48,7 @@ class EpicycleWrapper:
         Add all created objects to wrapper_list.
         """
         epicycle = Epicycle(
+            is_parent=is_parent,
             center=center,
             speed=cls._minutes_to_radians(speed),
             radius=radius,
@@ -92,6 +95,7 @@ class EpicycleWrapper:
             visible=visible,
             has_connect_line=has_connect_line,
             has_tracer=has_tracer,
+            is_parent=False,
         )
         self.epicycle.children.append(child_wrapper.epicycle)
         self.children.append(child_wrapper)

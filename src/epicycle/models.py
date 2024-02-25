@@ -13,6 +13,7 @@ class Point2D(BaseModel):
 
 
 class Epicycle(BaseModel):
+    is_parent: bool
     center: Point2D
     speed: float
     radius: int
