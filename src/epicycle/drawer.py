@@ -1,46 +1,71 @@
 import pygame as pg
 
-from epicycle.config import Colors, Config
-
-from .point import Point, Point2D
-
-
-def drawGrid(surface):
-    for x in range(0, Config.SCREEN_WIDTH, Config.GRID_SIDE):
-        for y in range(0, Config.SCREEN_HEIGHT, Config.GRID_SIDE):
-            rect = pg.Rect(x, y, Config.GRID_SIDE, Config.GRID_SIDE)
-            pg.draw.rect(surface, Colors._GRID_COLOR, rect, 1)
+from .models import Epicycle
+from .settings import Settings
+from .types import ColorType
 
 
-def draw_point(surface, point: Point, tracers_surface):
-    first_point = point.point.coordinates
-
-    point.calculate_next_point_pos()
-    if validate_coordinates(point.point):
-        second_point = point.point.coordinates
-        if point.need_to_draw_tracer:  # tracer
-            pg.draw.line(tracers_surface, point.color, first_point, second_point, 2)
-        if point.need_to_draw_connecting_line:  # connecting line
-            pg.draw.line(
-                surface,
-                Colors._CONNECT_COLOR,
-                point.point.coordinates,
-                point.center.coordinates,
-            )
-        if point.visible:  # point
-            pg.draw.circle(surface, point.color, point.point.coordinates, point.size)
-        if point.selected:
-            if pg.time.get_ticks() % 500 < 300:
-                pg.draw.circle(
-                    surface,
-                    Colors._SELECT_COLOR,
-                    point.point.coordinates,
-                    point.size + 50 / point.size,
-                )
+def draw_grid(surface: pg.Surface, width: int, height: int, grid_size: int, grid_color: ColorType) -> None:
+    """Draw grid over surface."""
+    for x in range(0, width, grid_size):
+        for y in range(0, height, grid_size):
+            rect = pg.Rect(x, y, grid_size, grid_size)
+            pg.draw.rect(surface, grid_color, rect, 1)
 
 
-def validate_coordinates(coordinates: Point2D) -> bool:
-    if 0 <= coordinates.x <= Config.SCREEN_WIDTH:
-        if 0 <= coordinates.y <= Config.SCREEN_HEIGHT:
-            return True
+def draw_epicycle(
+    surface: pg.Surface,
+    tracers_surface: pg.Surface,
+    epicycle: Epicycle,
+    previous_pos: tuple[float, float],
+    current_pos: tuple[float, float],
+    width: int,
+    height: int,
+    tracer_width: int = 1,
+    connect_line_width: int = 1,
+) -> None:
+    """Draw epicycle and its tracer."""
+    if not validate_coordinates(current_pos, width, height):
+        return
+
+    if epicycle.has_tracer:
+        pg.draw.line(
+            tracers_surface,
+            epicycle.color,
+            previous_pos,
+            current_pos,
+            tracer_width,
+        )
+
+    if epicycle.has_connect_line:
+        pg.draw.line(
+            surface,
+            Settings.connect_color,
+            epicycle.center.to_tuple(),
+            current_pos,
+            connect_line_width,
+        )
+
+    if epicycle.visible:
+        pg.draw.circle(
+            surface,
+            epicycle.color,
+            current_pos,
+            epicycle.size,
+        )
+
+    # TODO: Selection mode
+    # if wrapper.selected:
+    #     if pg.time.get_ticks() % 500 < 300:
+    #         pg.draw.circle(
+    #             surface,
+    #             Settings.connect_color,
+    #             wrapper.point.coordinates,
+    #             wrapper.size + 50 / wrapper.size,
+    #         )
+
+
+def validate_coordinates(coordinate: tuple[float, float], width: int, height: int) -> bool:
+    if 0 <= coordinate[0] <= width and 0 <= coordinate[1] <= height:
+        return True
     return False

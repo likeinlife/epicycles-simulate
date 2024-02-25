@@ -1,3 +1,3 @@
 from typing import TypeAlias
 
-ColorType: TypeAlias = tuple[int, int, int]
+ColorType: TypeAlias = tuple[int, int, int, int]

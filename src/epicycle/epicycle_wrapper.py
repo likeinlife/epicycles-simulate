@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from math import cos, pi, sin
 
 from .models import Epicycle, Point2D
@@ -13,12 +15,15 @@ class EpicycleWrapper:
     Note: speed in minutes.
     """
 
-    position: Point2D = Point2D(x=0, y=0)
-    offset: float = 0
+    position: Point2D
+    offset: float
     epicycle: Epicycle
+    wrapper_set: set[EpicycleWrapper] = set()
 
     def __init__(self, epicycle: Epicycle) -> None:
         self.epicycle = epicycle
+        self.position = Point2D(x=epicycle.center.x, y=epicycle.center.y + epicycle.radius)
+        self.offset = 0
         self.calculate_next_position()
 
     @classmethod
@@ -32,8 +37,12 @@ class EpicycleWrapper:
         visible: bool = True,
         has_connect_line: bool = True,
         has_tracer: bool = True,
-    ):
-        """Create new epicycle, then wrap it with EpicycleWrapper."""
+    ) -> EpicycleWrapper:
+        """
+        Create new epicycle, then wrap it with EpicycleWrapper.
+
+        Add all created objects to wrapper_list.
+        """
         epicycle = Epicycle(
             center=center,
             speed=cls._minutes_to_radians(speed),
@@ -44,13 +53,15 @@ class EpicycleWrapper:
             has_connect_line=has_connect_line,
             has_tracer=has_tracer,
         )
-        return cls(epicycle)
+        wrapper = cls(epicycle)
+        cls.wrapper_set.add(wrapper)
+        return wrapper
 
     def calculate_next_position(self):
         """Calculate next point position, then update all connected points."""
         x = cos(self.offset) * self.epicycle.radius + self.epicycle.center.x
         y = sin(self.offset) * self.epicycle.radius + self.epicycle.center.y
-        self._get_new_offset()
+        self._update_offset()
         self.position.x = x
         self.position.y = y
         self._calculate_connected_points()
@@ -64,14 +75,14 @@ class EpicycleWrapper:
         visible: bool = True,
         has_connect_line: bool = True,
         has_tracer: bool = True,
-    ) -> Epicycle:
+    ) -> EpicycleWrapper:
         """
         Create child for this epicycle.
 
         Child inherits current parent position as center.
         """
-        child = Epicycle(
-            center=self.position,
+        child_wrapper = self.new(
+            center=self.position.model_copy(),
             speed=speed,
             radius=radius,
             size=size,
@@ -80,8 +91,8 @@ class EpicycleWrapper:
             has_connect_line=has_connect_line,
             has_tracer=has_tracer,
         )
-        self.epicycle.children.append(child)
-        return child
+        self.epicycle.children.append(child_wrapper.epicycle)
+        return child_wrapper
 
     def update(
         self,
@@ -121,11 +132,12 @@ class EpicycleWrapper:
     def _minutes_to_radians(minutes: int) -> float:
         return 2 * pi * minutes / (360 * 60)
 
-    def _get_new_offset(self):
+    def _update_offset(self):
         self.offset += self.epicycle.speed
         if self.offset >= 2 * pi:
             self.offset -= 2 * pi
 
     def _calculate_connected_points(self):
         for child in self.epicycle.children:
-            child.center = self.position
+            child.center.x = self.position.x
+            child.center.y = self.position.y
