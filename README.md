@@ -11,7 +11,7 @@ poetry install
 
 2. Запуск
 ```cmd
-python main.py
+python src/main.py
 ```
 
 # Скриншоты
