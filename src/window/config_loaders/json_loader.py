@@ -3,7 +3,7 @@ from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from epicycle.models import Epicycle
+from window.models import Epicycle
 
 from .interface import IConfigLoader
 

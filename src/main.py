@@ -1,5 +1,5 @@
 # from dearpywindow import menu
-import epicycle
+import window
 from create_points import create_points
 
 # def pgui():
@@ -14,7 +14,7 @@ from create_points import create_points
 
 def main():
     state = create_points()
-    epicycle.start(fps=120, state=state)
+    window.start(fps=120, state=state)
     # pg_thread = threading.Thread(target=pg)
     # pgui_thread = threading.Thread(target=pgui)
 

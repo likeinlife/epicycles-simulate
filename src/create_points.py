@@ -1,7 +1,7 @@
-from epicycle.enums import Color
 from epicycle.epicycle_wrapper import EpicycleWrapper
 from epicycle.models import Point2D
 from state import State
+from window.enums import Color
 
 
 # TODO: Delete later

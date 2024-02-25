@@ -1,7 +1,7 @@
 from state import State
+from type_alias import ColorType
 
 from .enums import Color
-from .types import ColorType
 from .window import PyGameWindow
 
 

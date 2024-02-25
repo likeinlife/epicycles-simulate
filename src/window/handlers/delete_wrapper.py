@@ -2,7 +2,7 @@ import pygame as pg
 from pygame.event import Event
 from state import State
 
-from epicycle.commands import DeleteWrapperCommand, ICommand
+from window.commands import DeleteWrapperCommand, ICommand
 
 from .interface import IHandler
 

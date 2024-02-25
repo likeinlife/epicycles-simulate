@@ -2,12 +2,12 @@ from typing import NoReturn
 
 import pygame as pg
 from state import State
+from type_alias import ColorType
 
 from . import drawer
 from .enums import Color
 from .handlers import resolve_event
 from .settings import Settings
-from .types import ColorType
 
 
 class PyGameWindow:

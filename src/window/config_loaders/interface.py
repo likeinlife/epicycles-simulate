@@ -1,6 +1,6 @@
 import abc
 
-from epicycle.models import Epicycle
+from window.models import Epicycle
 
 
 class IConfigLoader(abc.ABC):

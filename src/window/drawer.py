@@ -1,8 +1,8 @@
 import pygame as pg
+from epicycle.models import Epicycle
+from type_alias import ColorType
 
-from .models import Epicycle
 from .settings import Settings
-from .types import ColorType
 
 
 def draw_grid(surface: pg.Surface, width: int, height: int, grid_size: int, grid_color: ColorType) -> None:

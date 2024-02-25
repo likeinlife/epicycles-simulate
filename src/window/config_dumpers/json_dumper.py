@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from epicycle.models import Epicycle
+from window.models import Epicycle
 
 
 class JsonConfigDumper:

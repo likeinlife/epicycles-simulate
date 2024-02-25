@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from pydantic import BaseModel, Field
-
-from .types import ColorType
+from type_alias import ColorType
 
 
 class Point2D(BaseModel):

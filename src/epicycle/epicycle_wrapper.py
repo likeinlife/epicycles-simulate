@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from math import cos, pi, sin
 
+from type_alias import ColorType
+
 from .models import Epicycle, Point2D
-from .types import ColorType
 
 
 class EpicycleWrapper:
