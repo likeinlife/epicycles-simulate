@@ -1,25 +1,31 @@
-# from dearpywindow import menu
-import window
-from create_points import create_points
+import threading
 
-# def pgui():
-#     menu.main(
-#         point.PointCounterMeta,
-#         PYGAME_WINDOW_HEIGHT=config.Config.SCREEN_HEIGHT,
-#         PYGAME_WINDOW_WIDTH=config.Config.SCREEN_WIDTH,
-#         PGUI_HEIGHT=600,
-#         PGUI_WIDTH=800,
-#     )
+import dearpywindow
+import pygame_view
+from create_points import create_points
+from settings import epicycle_settings
 
 
 def main():
     state = create_points()
-    window.start(fps=120, state=state)
-    # pg_thread = threading.Thread(target=pg)
-    # pgui_thread = threading.Thread(target=pgui)
+    pygame_window = pygame_view.create_window(
+        fps=120,
+        state=state,
+        width=epicycle_settings.width,
+        height=epicycle_settings.height,
+    )
+    pg_thread = threading.Thread(target=pygame_window.main_loop)
+    pgui_thread = threading.Thread(
+        target=lambda: dearpywindow.start(
+            state=state,
+            pygame_window=pygame_window,
+            pygame_window_height=epicycle_settings.height,
+            pygame_window_width=epicycle_settings.width,
+        ),
+    )
 
-    # pgui_thread.start()
-    # pg_thread.start()
+    pgui_thread.start()
+    pg_thread.start()
 
 
 if __name__ == "__main__":

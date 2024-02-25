@@ -7,10 +7,11 @@ from type_alias import ColorType
 from . import drawer
 from .enums import Color
 from .handlers import resolve_event
+from .interface import IPyGameWindow
 from .settings import Settings
 
 
-class PyGameWindow:
+class PyGameWindow(IPyGameWindow):
     def __init__(
         self,
         state: State,

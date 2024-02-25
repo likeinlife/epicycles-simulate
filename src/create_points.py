@@ -1,7 +1,7 @@
 from epicycle.epicycle_wrapper import EpicycleWrapper
 from epicycle.models import Point2D
 from epicycle.state import State
-from window.enums import Color
+from pygame_view.enums import Color
 
 
 # TODO: Delete later

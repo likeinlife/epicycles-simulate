@@ -5,7 +5,7 @@ from .enums import Color
 from .window import PyGameWindow
 
 
-def start(
+def create_window(
     state: State,
     width: int = 1000,
     height: int = 800,
@@ -21,4 +21,10 @@ def start(
         grid_size=grid_size,
         grid_color=grid_color,
     )
+    return window
+
+
+def start(
+    window: PyGameWindow,
+):
     window.main_loop()

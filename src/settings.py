@@ -7,3 +7,6 @@ class EpicycleSettings(BaseSettings):
     height: int = Field(800)
     fps: int = Field(120)
     grid_size: int = Field(20)
+
+
+epicycle_settings = EpicycleSettings()  # type: ignore

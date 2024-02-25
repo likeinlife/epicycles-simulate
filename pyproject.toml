@@ -23,6 +23,9 @@ pre-commit = "^3.6.2"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [tool.ruff]
 line-length = 120
 select = ["D", "B", "S", "A", "C4", "T10", "F", "Q"]
