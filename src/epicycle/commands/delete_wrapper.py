@@ -23,3 +23,5 @@ class DeleteWrapperCommand(ICommand):
             _del_children(wrapper)
             del self.state.wrappers[wrapper.__hash__()]
             del wrapper
+
+        self.state.selected_wrapper = None

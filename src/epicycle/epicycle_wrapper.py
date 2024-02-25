@@ -24,7 +24,7 @@ class EpicycleWrapper:
         self.epicycle = epicycle
         self.position = Point2D(x=epicycle.center.x, y=epicycle.center.y + epicycle.radius)
         self.offset = 0
-        self.children = []
+        self.children: list[EpicycleWrapper] = []
         self.calculate_next_position()
 
     @classmethod
