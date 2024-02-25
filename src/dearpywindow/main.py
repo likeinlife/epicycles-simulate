@@ -25,15 +25,23 @@ def start(
         pygame_window_width,
         pygame_window_height,
     ).configure()
+
+    no_wrapper_selected_window = window.popups.NoWrapperSelectedErrorWindow().configure()
     update_epicycle_window = window.UpdateEpicycleWindow(
         state,
         pygame_window_width,
         pygame_window_height,
+        no_wrapper_selected_window,
+    ).configure()
+    delete_epicycle_window = window.DeleteEpicycleWindow(
+        state,
+        no_wrapper_selected_window,
     ).configure()
     epicycles_menu = window.EpicyclesMenuWindow(
         state,
         create_epicycle_window,
         update_epicycle_window,
+        delete_epicycle_window,
     ).configure()
 
     main_window = window.MainWindow(

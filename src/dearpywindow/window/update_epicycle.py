@@ -9,6 +9,7 @@ from dearpywindow import actions
 from dearpywindow.enums import WindowId
 
 from .base import BaseWindow
+from .interface import IWindow
 
 
 class EpicycleUpdateEnum(str, Enum):
@@ -26,11 +27,17 @@ class EpicycleUpdateEnum(str, Enum):
 class UpdateEpicycleWindow(BaseWindow):
     window_id = WindowId.update_epicycle
 
-    def __init__(self, state: State, max_width: int, max_height: int):
+    def __init__(
+        self,
+        state: State,
+        max_width: int,
+        max_height: int,
+        no_wrapper_selected_window: IWindow,
+    ):
         self.state = state
         self.max_width = max_width
         self.max_height = max_height
-        self.no_wrapper_selected_window = NoWrapperSelectedErrorWindow().configure()
+        self.no_wrapper_selected_window = no_wrapper_selected_window
 
     def configure(self) -> Self:
         with dpg.window(
@@ -111,17 +118,3 @@ class UpdateEpicycleWindow(BaseWindow):
     def show(self) -> None:
         super().show()
         self._update_values()
-
-
-class NoWrapperSelectedErrorWindow(BaseWindow):
-    window_id = WindowId.no_wrapper_selected
-
-    def configure(self) -> Self:
-        with dpg.window(label="Error", tag=self.window_id, popup=True):
-            dpg.add_text("No wrapper selected")
-            dpg.add_button(
-                label="Ok",
-                width=75,
-                callback=self.hide,
-            )
-        return self

@@ -4,7 +4,7 @@ from epicycle.state import State
 from .interface import ICommand
 
 
-class DeleteWrapperCommand(ICommand):
+class DeleteSelectedWrapperCommand(ICommand):
     def __init__(self, state: State) -> None:
         self.state = state
 
