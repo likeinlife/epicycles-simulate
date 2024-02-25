@@ -12,8 +12,9 @@ def start(
     from .create_points import create_points
     from .window import PyGameWindow
 
-    create_points()
+    state = create_points()
     window = PyGameWindow(
+        state=state,
         width=width,
         height=height,
         fps=fps,

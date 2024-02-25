@@ -21,10 +21,15 @@ def draw_epicycle(
     current_pos: tuple[float, float],
     width: int,
     height: int,
+    selected: bool = False,
     tracer_width: int = 1,
     connect_line_width: int = 1,
 ) -> None:
-    """Draw epicycle and its tracer."""
+    """
+    Draw epicycle, tracer and connect line.
+
+    Draw selection if needed.
+    """
     if not validate_coordinates(current_pos, width, height):
         return
 
@@ -54,15 +59,14 @@ def draw_epicycle(
             epicycle.size,
         )
 
-    # TODO: Selection mode
-    # if wrapper.selected:
-    #     if pg.time.get_ticks() % 500 < 300:
-    #         pg.draw.circle(
-    #             surface,
-    #             Settings.connect_color,
-    #             wrapper.point.coordinates,
-    #             wrapper.size + 50 / wrapper.size,
-    #         )
+    if selected:
+        if pg.time.get_ticks() % 500 < 300:
+            pg.draw.circle(
+                surface,
+                Settings.connect_color,
+                current_pos,
+                epicycle.size + 5,
+            )
 
 
 def validate_coordinates(coordinate: tuple[float, float], width: int, height: int) -> bool:
