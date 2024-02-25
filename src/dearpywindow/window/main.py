@@ -16,7 +16,8 @@ from .base import BaseWindow
 
 
 class MenuElementEnum(str, Enum):
-    load_file = "load_file"
+    load_config = "load_config_menu"
+    dump_config = "dump_config_menu"
 
 
 class MainWindow(BaseWindow):
@@ -47,26 +48,26 @@ class MainWindow(BaseWindow):
                 label="Load Json config",
                 show=False,
                 directory_selector=False,
-                callback=lambda: actions.load_json_config(MenuElementEnum.load_file),
-                tag=MenuElementEnum.load_file,
+                callback=actions.load_json_config(self.state),
+                tag=MenuElementEnum.load_config,
                 width=700,
                 height=400,
             ):
                 dpg.add_file_extension(".json", color=(70, 200, 70, 255))
 
-            dpg.add_button(label="Load json config", callback=lambda: dpg.show_item(MenuElementEnum.load_file))
+            dpg.add_button(label="Load json config", callback=lambda: dpg.show_item(MenuElementEnum.load_config))
 
-            # with dpg.file_dialog(
-            #     label="Dump config to json",
-            #     show=False,
-            #     directory_selector=False,
-            #     callback=menu_actions.dump_json_callback,
-            #     cancel_callback=menu_actions.dump_json_cancel_callback,
-            #     tag="dump_file",
-            #     width=700,
-            #     height=400,
-            # ):
-            #     dpg.add_file_extension(".json", color=(70, 200, 70, 255))
+            with dpg.file_dialog(
+                label="Dump config to json",
+                show=False,
+                directory_selector=False,
+                callback=actions.dump_json_config(self.state),
+                tag=MenuElementEnum.dump_config,
+                width=700,
+                height=400,
+            ):
+                dpg.add_file_extension(".json", color=(70, 200, 70, 255))
 
-            # dpg.add_button(label="Dump config to json", callback=lambda: dpg.show_item("dump_file"))
+            dpg.add_button(label="Dump config to json", callback=lambda: dpg.show_item(MenuElementEnum.dump_config))
+
         return self
