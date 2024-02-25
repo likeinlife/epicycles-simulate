@@ -1,12 +1,12 @@
 from typing import NoReturn
 
 import pygame as pg
+from state import State
 
 from . import drawer
 from .enums import Color
 from .handlers import resolve_event
 from .settings import Settings
-from .state import State
 from .types import ColorType
 
 

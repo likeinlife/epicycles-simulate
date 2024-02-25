@@ -1,4 +1,4 @@
-from epicycle.state import State
+from state import State
 
 from .interface import ICommand
 

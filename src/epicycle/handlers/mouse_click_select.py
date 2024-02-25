@@ -1,8 +1,8 @@
 import pygame as pg
 from pygame.event import Event
+from state import State
 
 from epicycle.commands import ICommand, SelectWrapperCommand
-from epicycle.state import State
 
 from .interface import IHandler
 

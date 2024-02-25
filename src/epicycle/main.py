@@ -1,18 +1,18 @@
+from state import State
+
 from .enums import Color
 from .types import ColorType
+from .window import PyGameWindow
 
 
 def start(
+    state: State,
     width: int = 1000,
     height: int = 800,
     fps: int = 60,
     grid_size: int = 20,
     grid_color: ColorType = Color.light_gray,
 ):
-    from .create_points import create_points
-    from .window import PyGameWindow
-
-    state = create_points()
     window = PyGameWindow(
         state=state,
         width=width,

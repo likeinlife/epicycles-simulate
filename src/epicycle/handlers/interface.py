@@ -1,9 +1,9 @@
 import abc
 
 import pygame as pg
+from state import State
 
 from epicycle.commands import ICommand
-from epicycle.state import State
 
 
 class IHandler(abc.ABC):

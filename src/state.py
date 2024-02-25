@@ -1,4 +1,4 @@
-from .epicycle_wrapper import EpicycleWrapper
+from epicycle.epicycle_wrapper import EpicycleWrapper
 
 
 class State:
