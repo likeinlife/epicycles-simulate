@@ -12,15 +12,23 @@ from .interface import IWindow
 class EpicyclesMenuWindow(BaseWindow):
     window_id = WindowId.epicycles_menu
 
-    def __init__(self, state: State, create_epicycle_window: IWindow):
+    def __init__(
+        self,
+        state: State,
+        create_epicycle_window: IWindow,
+        update_epicycle_window: IWindow,
+    ):
         self.state = state
         self.create_epicycle_window = create_epicycle_window
+        self.update_epicycle_window = update_epicycle_window
 
     def configure(self) -> Self:
         with dpg.window(tag=self.window_id, label="List Points", autosize=True):
             dpg.add_text("Points")
 
             dpg.add_button(label="Create point", callback=self.create_epicycle_window.show)
+            dpg.add_button(label="Update point", callback=self.update_epicycle_window.show)
+            dpg.add_button(label="Hide panel", callback=self.hide)
 
             # with dpg.group(horizontal=True):
             #     dpg.add_button(

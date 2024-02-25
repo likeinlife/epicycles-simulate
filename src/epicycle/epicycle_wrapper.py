@@ -131,6 +131,9 @@ class EpicycleWrapper:
         if has_connect_line:
             self.epicycle.has_connect_line = has_connect_line
 
+    def get_speed(self) -> int:
+        return int(360 * 60 * self.epicycle.speed / (2 * pi))
+
     @staticmethod
     def _minutes_to_radians(minutes: int) -> float:
         return 2 * pi * minutes / (360 * 60)

@@ -12,19 +12,15 @@ from .base import BaseWindow
 
 
 class EpicycleCreateEnum(str, Enum):
-    visible = "visible"
-    tracer = "tracer"
-    connection_line = "connection_line"
-    color = "color"
-    x = "x"
-    y = "y"
-    speed = "speed"
-    radius = "radius"
-    size = "size"
-
-
-def get_color_picker():
-    print(dpg.get_value(EpicycleCreateEnum.color))
+    visible = "create_visible"
+    tracer = "create_tracer"
+    connection_line = "create_connection_line"
+    color = "create_color"
+    x = "create_x"
+    y = "create_y"
+    speed = "create_speed"
+    radius = "create_radius"
+    size = "create_size"
 
 
 class CreateEpicycleWindow(BaseWindow):

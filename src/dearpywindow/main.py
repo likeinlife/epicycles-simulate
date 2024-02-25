@@ -20,9 +20,21 @@ def start(
     dpg.create_viewport(width=pgui_width, height=pgui_height, resizable=True)
     dpg.setup_dearpygui()
 
-    # set_values()
-    create_epicycle_window = window.CreateEpicycleWindow(state, pygame_window_width, pygame_window_height).configure()
-    epicycles_menu = window.EpicyclesMenuWindow(state, create_epicycle_window).configure()
+    create_epicycle_window = window.CreateEpicycleWindow(
+        state,
+        pygame_window_width,
+        pygame_window_height,
+    ).configure()
+    update_epicycle_window = window.UpdateEpicycleWindow(
+        state,
+        pygame_window_width,
+        pygame_window_height,
+    ).configure()
+    epicycles_menu = window.EpicyclesMenuWindow(
+        state,
+        create_epicycle_window,
+        update_epicycle_window,
+    ).configure()
 
     main_window = window.MainWindow(
         state=state,
