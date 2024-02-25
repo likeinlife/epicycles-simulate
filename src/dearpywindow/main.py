@@ -37,11 +37,20 @@ def start(
         state,
         no_wrapper_selected_window,
     ).configure()
+
+    create_child_epicycle_window = window.CreateChildEpicycleWindow(
+        state,
+        pygame_window_width,
+        pygame_window_height,
+        no_wrapper_selected_window,
+    ).configure()
+
     epicycles_menu = window.EpicyclesMenuWindow(
         state,
         create_epicycle_window,
         update_epicycle_window,
         delete_epicycle_window,
+        create_child_epicycle_window,
     ).configure()
 
     main_window = window.MainWindow(
