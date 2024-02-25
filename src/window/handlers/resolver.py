@@ -1,7 +1,6 @@
 import pygame as pg
+from epicycle.commands import ICommand
 from epicycle.state import State
-
-from window.commands import ICommand
 
 from .delete_wrapper import DeleteWrapperHandler
 from .exit_handler import ExitHandler
