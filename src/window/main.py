@@ -1,4 +1,4 @@
-from state import State
+from epicycle.state import State
 from type_alias import ColorType
 
 from .enums import Color

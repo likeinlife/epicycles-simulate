@@ -1,6 +1,6 @@
 import pygame as pg
+from epicycle.state import State
 from pygame.event import Event
-from state import State
 
 from window.commands import ICommand, PauseCommand
 

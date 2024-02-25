@@ -1,7 +1,7 @@
 from typing import NoReturn
 
 import pygame as pg
-from state import State
+from epicycle.state import State
 from type_alias import ColorType
 
 from . import drawer

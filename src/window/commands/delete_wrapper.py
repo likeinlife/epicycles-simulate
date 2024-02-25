@@ -1,5 +1,5 @@
 from epicycle.epicycle_wrapper import EpicycleWrapper
-from state import State
+from epicycle.state import State
 
 from .interface import ICommand
 
