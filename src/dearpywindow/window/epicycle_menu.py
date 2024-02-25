@@ -36,55 +36,5 @@ class EpicyclesMenuWindow(BaseWindow):
             dpg.add_button(label="Create child epicycle", callback=self.create_child_epicycle_window.show)
             dpg.add_button(label="Hide panel", callback=self.hide)
 
-            # with dpg.group(horizontal=True):
-            #     dpg.add_button(
-            #         label="Update info",
-            #         callback=lambda: menu_actions.update_figures_combobox(),
-            #     )
-            #     dpg.add_combo(
-            #         [],
-            #         label="Figure",
-            #         tag="figure",
-            #         callback=lambda: menu_actions.update_point_menu(),
-            #     )
-            # dpg.add_button(label="Update point", callback=show_update_point_modal)
-            # dpg.add_button(
-            #     label="Delete parent point",
-            #     callback=lambda: object_actions.delete_point_callback(object_actions.get_point()),
-            # )
-
-            # dpg.add_listbox(
-            #     [],
-            #     label="children",
-            #     tag="child",
-            #     callback=lambda: menu_actions.update_modal_update_child(),
-            # )
-            # dpg.add_button(label="Add child", callback=show_create_child_modal)
-            # dpg.add_button(label="Update child", callback=show_update_child_modal)
-            # dpg.add_button(
-            #     label="Delete child",
-            #     callback=lambda: object_actions.delete_child_callback(
-            #         object_actions.get_point(),
-            #         object_actions.get_child_point(),
-            #     ),
-            # )
-
-            # dpg.add_checkbox(label="Visible", tag="visible", enabled=False)
-            # dpg.add_checkbox(label="Line", tag="line", enabled=False)
-            # dpg.add_checkbox(label="Tracer", tag="tracer", enabled=False)
-            # dpg.add_combo(
-            #     config.Colors.get_colors(),
-            #     label="Choose color",
-            #     tag="color",
-            #     default_value="WHITE",
-            #     enabled=False,
-            # )
-
-            # dpg.add_slider_int(label="x", min_value=0, max_value=width, tag="x", enabled=False)
-            # dpg.add_slider_int(label="y", min_value=0, max_value=height, tag="y", enabled=False)
-            # dpg.add_slider_int(label="speed", min_value=-1000, max_value=1000, tag="speed", enabled=False)
-            # dpg.add_slider_int(label="radius", min_value=1, max_value=1000, tag="radius", enabled=False)
-            # dpg.add_slider_int(label="size", min_value=2, max_value=300, tag="size", enabled=False)
-
         self.hide()
         return self

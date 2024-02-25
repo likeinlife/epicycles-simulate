@@ -8,7 +8,7 @@ from type_alias import ColorType
 from dearpywindow import actions
 from dearpywindow.enums import WindowId
 
-from .base import BaseWindow
+from ..base import BaseWindow
 
 
 class EpicycleCreateEnum(str, Enum):

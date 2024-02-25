@@ -6,8 +6,8 @@ from epicycle.commands import DeleteSelectedWrapperCommand
 
 from dearpywindow.enums import WindowId
 
-from .base import BaseWindow
-from .interface import IWindow
+from ..base import BaseWindow
+from ..interface import IWindow
 
 
 class DeleteEpicycleWindow(BaseWindow):
