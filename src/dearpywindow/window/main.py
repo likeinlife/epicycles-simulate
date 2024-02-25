@@ -75,6 +75,7 @@ class MainWindow(BaseWindow):
                 min_value=1,
                 max_value=200,
                 callback=self._change_fps_callback,
+                default_value=self.state.fps,
             )
 
         return self

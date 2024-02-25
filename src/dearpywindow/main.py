@@ -2,9 +2,6 @@ import dearpygui.dearpygui as dpg
 from epicycle.state import State
 
 from . import window
-
-# from .error import error_popup
-# from .menu_actions import set_values
 from .protocols import PyGameWindow
 
 
@@ -60,16 +57,6 @@ def start(
     ).configure()
 
     dpg.set_primary_window(main_window.window_id, True)
-    # create_modal_list_points(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
-    # create_modal_create_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
-    # create_modal_update_point(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
-
-    # create_modal_update_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
-    # create_modal_create_child(PYGAME_WINDOW_WIDTH, PYGAME_WINDOW_HEIGHT)
-
-    # error_popup("")
-
-    dpg.set_viewport_always_top(True)
 
     dpg.show_viewport()
     dpg.start_dearpygui()

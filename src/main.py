@@ -2,12 +2,12 @@ import threading
 
 import dearpywindow
 import pygame_view
-from create_points import create_points
+from epicycle import State
 from settings import epicycle_settings
 
 
 def main():
-    state = create_points()
+    state = State(fps=epicycle_settings.fps)
     pygame_window = pygame_view.create_window(
         state=state,
         width=epicycle_settings.width,
