@@ -70,4 +70,14 @@ class MainWindow(BaseWindow):
 
             dpg.add_button(label="Dump config to json", callback=lambda: dpg.show_item(MenuElementEnum.dump_config))
 
+            dpg.add_slider_int(
+                label="FPS",
+                min_value=1,
+                max_value=200,
+                callback=self._change_fps_callback,
+            )
+
         return self
+
+    def _change_fps_callback(self, sender, app_data):
+        self.state.fps = app_data

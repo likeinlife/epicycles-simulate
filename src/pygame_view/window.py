@@ -17,7 +17,6 @@ class PyGameWindow(IPyGameWindow):
         state: State,
         width: int = 1000,
         height: int = 800,
-        fps: int = 60,
         grid_size: int = 20,
         grid_color: ColorType = Color.light_gray,
     ) -> None:
@@ -26,7 +25,6 @@ class PyGameWindow(IPyGameWindow):
         self.height = height
         self.grid_size = grid_size
         self.grid_color = grid_color
-        self.fps = fps
 
     def main_loop(self) -> NoReturn:
         """
@@ -90,7 +88,7 @@ class PyGameWindow(IPyGameWindow):
 
                 self._update_epicycles()
 
-                self.clock.tick(self.fps)
+                self.clock.tick(self.state.fps)
                 self.background_surface.blit(self.tracers_surface, (0, 0))
                 self.background_surface.blit(self.foreground_surface, (0, 0))
                 self.screen.blit(self.background_surface, (0, 0))

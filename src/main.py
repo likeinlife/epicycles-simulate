@@ -9,7 +9,6 @@ from settings import epicycle_settings
 def main():
     state = create_points()
     pygame_window = pygame_view.create_window(
-        fps=120,
         state=state,
         width=epicycle_settings.width,
         height=epicycle_settings.height,

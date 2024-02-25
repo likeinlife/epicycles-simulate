@@ -9,7 +9,6 @@ def create_window(
     state: State,
     width: int = 1000,
     height: int = 800,
-    fps: int = 60,
     grid_size: int = 20,
     grid_color: ColorType = Color.light_gray,
 ):
@@ -17,7 +16,6 @@ def create_window(
         state=state,
         width=width,
         height=height,
-        fps=fps,
         grid_size=grid_size,
         grid_color=grid_color,
     )
