@@ -107,7 +107,7 @@ class EpicycleWrapper:
         center: Point2D | None = None,
         radius: int | None = None,
         size: int | None = None,
-        color: ColorType | None,
+        color: ColorType | None = None,
         speed: int | None = None,
         visible: bool | None = None,
         has_tracer: bool | None = None,
@@ -118,21 +118,21 @@ class EpicycleWrapper:
 
         Note: speed in minutes.
         """
-        if center:
+        if center is not None:
             self.epicycle.center = center
-        if radius:
+        if radius is not None:
             self.epicycle.radius = radius
-        if size:
+        if size is not None:
             self.epicycle.size = size
-        if color:
+        if color is not None:
             self.epicycle.color = color
-        if speed:
+        if speed is not None:
             self.epicycle.speed = self._minutes_to_radians(speed)
-        if visible:
+        if visible is not None:
             self.epicycle.visible = visible
-        if has_tracer:
+        if has_tracer is not None:
             self.epicycle.has_tracer = has_tracer
-        if has_connect_line:
+        if has_connect_line is not None:
             self.epicycle.has_connect_line = has_connect_line
 
     def get_speed(self) -> int:
