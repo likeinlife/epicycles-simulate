@@ -5,3 +5,4 @@ from .select_wrapper import SelectWrapperCommand
 from .delete_wrapper import DeleteSelectedWrapperCommand
 from .deselect_wrapper import DeselectWrapperCommand
 from .delete_all_wrappers import DeleteAllWrappersCommand
+from .show_all_epicycles import ShowAllWrappersEpicycles

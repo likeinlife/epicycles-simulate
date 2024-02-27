@@ -1,6 +1,7 @@
 from typing import Self
 
 import dearpygui.dearpygui as dpg
+from epicycle.commands import ShowAllWrappersEpicycles
 from epicycle.state import State
 
 from dearpywindow.enums import WindowId
@@ -34,6 +35,7 @@ class EpicyclesMenuWindow(BaseWindow):
             dpg.add_button(label="Update epicycle", callback=self.update_epicycle_window.show)
             dpg.add_button(label="Delete epicycle", callback=self.delete_epicycle_window.show)
             dpg.add_button(label="Create child epicycle", callback=self.create_child_epicycle_window.show)
+            dpg.add_button(label="Show all epicycles", callback=ShowAllWrappersEpicycles(self.state).execute)
             dpg.add_button(label="Hide panel", callback=self.hide)
 
         self.hide()
